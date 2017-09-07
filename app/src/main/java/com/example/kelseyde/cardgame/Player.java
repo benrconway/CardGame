@@ -1,20 +1,26 @@
 package com.example.kelseyde.cardgame;
 
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class Player {
 
-    private CardType card;
+    private ArrayList<Card> hand;
 
     public Player() {
-        this.card = null;
+        this.hand = new ArrayList<Card>() ;
     }
 
-    public CardType getCard() {
-        return card;
+    public ArrayList<Card> getHand() {
+        return hand;
     }
 
-    public void setCard(CardType card) {
-        this.card = card;
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
     }
 
+    public void takeCard(Card card) {
+        hand.add(card);
+    }
 }

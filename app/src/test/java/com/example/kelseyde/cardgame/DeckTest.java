@@ -2,10 +2,12 @@ package com.example.kelseyde.cardgame;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.*;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
-public class GameTest {
+public class DeckTest {
 
     Player player1;
     Player player2;
@@ -29,11 +31,32 @@ public class GameTest {
     }
 
     @Test
-    public void testWinner() {
+    public void testHasPlayers() {
+        assertEquals(3, game.getPlayers().size());
+    }
+
+    @Test
+    public void testNewDeck() {
+        deck.newDeck();
+        assertEquals(52, deck.getDeck().size() );
+    }
+
+    @Test
+    public void testFirstCard() {
+        deck.newDeck();
+        assertEquals(SuitType.DIAMONDS, deck.getDeck().get(0).getSuit());
+        assertEquals(CardType.TWO, deck.getDeck().get(0).getValue());
+    }
+
+    @Test
+    public void testDeal() {
         deck.newDeck();
         deck.dealCards(players);
-        assertEquals(player3, game.getWinner(players));
+        assertEquals(49, deck.getDeck().size());
+        assertEquals(1, game.getPlayers().get(0).getHand().size());
     }
+
+
 
 
 

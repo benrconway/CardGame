@@ -1,6 +1,7 @@
 package com.example.kelseyde.cardgame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 
 public class Game {
@@ -33,25 +34,17 @@ public class Game {
 
     //methods
 
-    public void newDeck() {
-        Card card;
-
-        ArrayList<Card> deck = new ArrayList<Card>();
-
-        ArrayList<SuitType> suits =
-                new ArrayList<SuitType>(EnumSet.allOf(SuitType.class));
-
-        ArrayList<CardType> cardTypes =
-                new ArrayList<CardType>(EnumSet.allOf(CardType.class));
-
-        for(SuitType suit : suits) {
-            for (CardType value : cardTypes) {
-                card = new Card(suit, value);
-                deck.add(card);
+    public Player getWinner(ArrayList<Player> players) {
+        Player winner = null;
+        int highest = 0;
+        for (Player player : players) {
+            int cardValue = player.getHand().get(0).getValue().ordinal();
+            if ( cardValue > highest ) {
+                winner = player;
+                highest = player.getHand().get(0).getValue().ordinal();
             }
         }
-        this.deck = deck;
-
+        return winner;
     }
 
 
